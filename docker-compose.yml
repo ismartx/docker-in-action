@@ -1,0 +1,103 @@
+version: '2'
+services:
+    docker_java:
+        image: java:8-jdk
+        container_name: docker_java
+        networks:
+            docker_network:
+              ipv4_address: 10.10.10.2
+        depends_on:
+            - docker_elastic
+            - docker_mysql
+            - docker_redis
+        links:
+            - docker_elastic
+            - docker_mysql
+            - docker_redis
+        volumes:
+            - "./java/conf:/usr/src/docker/conf"
+            - "./java/app:/usr/src/docker/app"
+            - "./java/log:/usr/src/docker/docker-logs"
+        working_dir:
+            /usr/src/docker
+        ports:
+            - "18080:8080"
+        command:
+            ["java", "-jar","./app/docker.jar", "--spring.config.location=./conf/application.properties"]
+    docker_mysql:
+        image: mysql:5.7
+        container_name: docker_mysql
+        networks:
+            docker_network:
+              ipv4_address: 10.10.10.3
+        volumes:
+            - "./mysql/db:/var/lib/mysql"
+            - "./mysql/conf/my.cnf:/etc/mysql/conf.d/my.cnf"
+            - "./mysql/initialize.sql:/docker-entrypoint-initdb.d/initialize.sql"
+        environment:
+            MYSQL_ROOT_PASSWORD: 2ZWGJqnzN4KDcsYE
+            MYSQL_DATABASE: docker
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: Docker_password_1
+        ports:
+            - "13306:3306"
+        command:
+            ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci"]
+    docker_redis:
+        # image: gaopq/redis_cluster:3.0.1
+        build: ./redis/
+        container_name: docker_redis
+        volumes:
+            - "./redis/cluster_conf:/data/redis"
+        networks:
+            docker_network:
+              ipv4_address: 10.10.10.10
+        working_dir:
+            /data/redis
+        ports:
+            - "16479:6479"
+            - "16480:6480"
+            - "16481:6481"
+            - "16482:6482"
+            - "16483:6483"
+            - "16484:6484"
+            - "16485:6485"
+            - "16486:6486"
+            - "16487:6487"
+        command:
+            ["/bin/bash", "bin/start_redis_all.sh"]
+    docker_node:
+        build: ./node/
+        container_name: docker_node
+        networks:
+            docker_network:
+              ipv4_address: 10.10.10.4
+        volumes:
+            - "./node/app:/usr/src/app"
+        ports:
+            - "15200:5200"
+        working_dir:
+            /usr/src/app
+        command:
+            ["/bin/bash", "bin/deploy.sh"]
+    docker_elastic:
+        image: elasticsearch:2.4.3
+        container_name: docker_elastic
+        volumes:
+            - "./es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+            - "./es/plugins:/usr/share/elasticsearch/plugins"
+            - "./es/data:/usr/share/elasticsearch/data"
+        ports:
+            - "19200:9200"
+            - "19300:9300"
+        networks:
+            docker_network:
+              ipv4_address: 10.10.10.5
+networks:
+    docker_network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+            - subnet: 10.10.10.0/24
+              gateway: 10.10.10.1

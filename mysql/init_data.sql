@@ -1,0 +1,1 @@
+INSERT INTO `aitu`.`category` (`id`, `search_key`, `name`, `data`, `status`, `level`, `create_time`, `modify_time`) VALUES ('2', 'fileSize', '大小', '0-50M,50-100M,100-200M,200-500M,500M+', 'ON', '1', '2016-12-27 12:38:49', '2016-12-30 16:04:47');

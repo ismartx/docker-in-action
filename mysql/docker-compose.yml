@@ -1,0 +1,21 @@
+version: '2'
+services:
+    docker_mysql:
+        # image: mysql/mysql-server:5.7
+        image: mysql:5.7
+        container_name: docker_mysql
+        volumes:
+            - "./test/db:/var/lib/mysql"
+            - "./conf/my.cnf:/etc/mysql/conf.d/my.cnf"
+            - "./initialize.sql:/docker-entrypoint-initdb.d/initialize.sql"
+        environment:
+            MYSQL_ROOT_PASSWORD: mdoctor_test_1_A
+            MYSQL_DATABASE: docker
+            MYSQL_USER: docker
+            MYSQL_PASSWORD: Docker_password_1
+        # expose:
+        #    - "3306"
+        ports:
+            - "13306:3306"
+        command:
+            ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci"]

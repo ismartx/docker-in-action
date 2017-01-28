@@ -1,0 +1,14 @@
+version: '2'
+services:
+    es:
+        image: elasticsearch:2.4.3
+        container_name: docker_es
+        volumes:
+            - "./config/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+            - "./plugins:/usr/share/elasticsearch/plugins"
+            - "./test/data:/usr/share/elasticsearch/data"
+        ports:
+            - "19200:9200"
+            - "19300:9300"
+        # command:
+            # ["/usr/share/elasticsearch/bin/plugin", "install", "mobz/elasticsearch-head"]

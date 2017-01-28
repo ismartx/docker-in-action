@@ -1,0 +1,13 @@
+version: '2'
+services:
+    node:
+        build: .
+        container_name: docker_node
+        volumes:
+            - "./app/docker:/usr/src/app/docker"
+        ports:
+            - "5200:5200"
+        working_dir:
+            /usr/src/app/docker
+        command:
+            ["/bin/bash", "./bin/deploy.sh"]

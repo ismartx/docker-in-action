@@ -1,0 +1,24 @@
+version: '2'
+services:
+    redis_db:
+        build: ./
+        # image: gaopq/redis_cluster:3.0.1
+        container_name: docker_redis
+        volumes:
+            - "./cluster_conf:/data/redis"
+        working_dir:
+            /data/redis
+        # expose:
+            # - "6379"
+        ports:
+            - "16479:6479"
+            - "16480:6480"
+            - "16481:6481"
+            - "16482:6482"
+            - "16483:6483"
+            - "16484:6484"
+            - "16485:6485"
+            - "16486:6486"
+            - "16487:6487"
+        command:
+            ["/bin/bash", "bin/start_redis_all.sh"]
