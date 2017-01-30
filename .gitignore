@@ -1,0 +1,10 @@
+.DS_Store
+java/app/*.jar
+java/log
+node/app
+es/data
+es/test
+mysql/db
+mysql/test
+redis/cluster_conf
+!redis/cluster_conf/redis.conf
