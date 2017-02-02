@@ -1,21 +1,21 @@
-[中文文档](./README.zh-cn.md)
+[English docs](./README.md)
 
-### docker in action
-Docker in action a Java(spring boot) docker project with mysql, redis, nodejs, elasticsearch components.
-#### components
+### docker实践
+这是一个Java(spring boot)的docker项目，使用了mysql, redis, nodejs, elasticsearch组件。
+#### 组件
 - [java:8-jdk](https://hub.docker.com/_/java/)
 - [mysql:5.7](https://hub.docker.com/_/mysql/)
 - [redis](./redis/Dockerfile)
 - [node](./node/Dockerfile)
 - [elasticsearch:2.4.3](https://hub.docker.com/_/elasticsearch/)
 
-Reference to README and docker-compose.yml in each component folder.
+参考组件文件夹中的README和docker-compose.yml文件可以获得更多组件信息。
 
-#### run project
+#### 运行项目
 ```
 docker-compose up -d
 ```
-#### restart service
+#### 重启服务
 ```
 docker-compose restart docker_redis
 docker-compose restart docker_java
