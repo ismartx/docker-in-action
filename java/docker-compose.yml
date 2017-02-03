@@ -6,12 +6,10 @@ services:
         volumes:
             - "./app:/usr/src/docker/app"
             - "./conf:/usr/src/docker/conf"
-            - "./log:/usr/src/docker/docker-logs"
+            - "./logs:/usr/src/docker/docker-logs"
         working_dir:
             /usr/src/docker
-        # expose:
-            # - "21021"
         ports:
-            - "21021:21021"
+            - "18080:8080"
         command:
             ["java", "-jar","./app/docker.jar", "--spring.config.location=./conf/application.properties"]

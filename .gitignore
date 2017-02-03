@@ -1,6 +1,6 @@
 .DS_Store
 java/app/*.jar
-java/log
+java/logs
 node/app
 es/data
 es/test

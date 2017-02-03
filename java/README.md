@@ -1,4 +1,7 @@
-if you deploy this project on prod server, please modify the application.properties.
+## Java
+spring boot framework, put the jar file in app folder.
+
+### Run
 ```
-swagger.enable=false
+docker-compose up -d
 ```
