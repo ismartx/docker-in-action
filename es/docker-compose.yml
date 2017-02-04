@@ -10,5 +10,3 @@ services:
         ports:
             - "19200:9200"
             - "19300:9300"
-        # command:
-            # ["/usr/share/elasticsearch/bin/plugin", "install", "mobz/elasticsearch-head"]
