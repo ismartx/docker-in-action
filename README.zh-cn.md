@@ -9,12 +9,18 @@
 - [node](./node/Dockerfile)
 - [elasticsearch:2.4.3](https://hub.docker.com/_/elasticsearch/)
 
-参考组件文件夹中的README和docker-compose.yml文件可以获得更多组件信息。
+参考组件文件夹中的README和docker-compose.yml（组件单元测试）文件可以获得更多组件信息。
 
 #### 运行项目
 ```
 docker-compose up -d
 ```
+
+#### 停止项目
+```
+docker-compose stop
+```
+
 #### 重启服务
 ```
 docker-compose restart docker_redis
