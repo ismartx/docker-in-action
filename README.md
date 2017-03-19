@@ -1,5 +1,7 @@
 [中文文档](./README.zh-cn.md)
 
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 ### docker in action
 Docker in action is a Java(normally spring boot) docker project with mysql, redis, nodejs, elasticsearch components.
 #### components
