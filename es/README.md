@@ -1,5 +1,5 @@
 ## Elasticsearch
-use ik plugin
+The elasticsearch component use ik plugin.
 
 ### Run
 ```
